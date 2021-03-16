@@ -67,7 +67,7 @@ class Controller extends WebController
     {
         // No actions to call. Since there's nothing to do but returning a response.
 
-        return view('welcome::resgiter-page');
+        return view('authentication::logup');
     }
 
     public function handleResgiter(ResgiterRequest $request)
@@ -80,7 +80,7 @@ class Controller extends WebController
 
         return is_array($result) ? redirect('home')->with($result) : redirect('dashboard');
     }
-    
+
     public function handleLogut(LogoutRequest $request)
     {
         Apiato::call('Authentication@WebLogoutAction');

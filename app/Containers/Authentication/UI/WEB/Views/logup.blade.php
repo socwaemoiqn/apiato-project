@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Apiato</title>
+    <title>Logup page</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
@@ -136,7 +136,7 @@
     <div class="login-page">
         <h1 class="center">Login</h1>
         <div class="form">
-            <form class="login-form" action="{{route('post_admin_login_form')}}" method="post">
+            <form class="login-form" action="{{ url('resgiter') }}" method="post">
                 {{ csrf_field() }}
                 @if(session('status'))
                 <div class="text-red">{{ session('status') }}</div>
@@ -146,9 +146,9 @@
                 <input type="password" placeholder="password" id="password" name="password" />
                 <span class="text-red">{{ $errors->first('password') }}</span>
 
-                <button class="mb-2" s style="margin-bottom: 10px;">login</button>
-                <a href="{{ url('resgiter') }}">
-                    <button type="button">Resgiter</button>
+                <button class="mb-2" s style="margin-bottom: 10px;">Resgiter</button>
+                <a href="{{ url('login') }}">
+                    <button type="button">Back</button>
                 </a>
             </form>
         </div>
