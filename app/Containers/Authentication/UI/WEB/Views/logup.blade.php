@@ -145,7 +145,16 @@
                 <span class="text-red">{{ $errors->first('email') }}</span>
                 <input type="password" placeholder="password" id="password" name="password" />
                 <span class="text-red">{{ $errors->first('password') }}</span>
-
+                <input type="textbox" placeholder="name" id="name" name="name" />
+                <span class="text-red">{{ $errors->first('name') }}</span>
+                <input type="date" name="birth" id="birth">
+                <span class="text-red">{{ $errors->first('birth') }}</span>
+                <select name="gender" id="gender">
+                    <option value="true">Nam</option>
+                    <option value="false">Nữ</option>
+                </select>
+                <span class="text-red">{{ $errors->first('gender') }}</span>
+                <br></br>
                 <button class="mb-2" s style="margin-bottom: 10px;">Resgiter</button>
                 <a href="{{ url('login') }}">
                     <button type="button">Back</button>

@@ -73,12 +73,12 @@ class Controller extends WebController
     public function handleResgiter(ResgiterRequest $request)
     {
         try {
-            $result = Apiato::call('Authentication@WebResgiterAction', [new DataTransporter($request)]);
+            $result = Apiato::call('User@RegisterUserAction', [new DataTransporter($request)]);
         } catch (Exception $e) {
-            return redirect('login')->with('status', $e->getMessage());
+            return redirect('resgiter')->with('status', $e->getMessage());
         }
 
-        return is_array($result) ? redirect('home')->with($result) : redirect('dashboard');
+        return redirect('login')->with('status','Đăng ký thành công!');
     }
 
     public function handleLogut(LogoutRequest $request)
