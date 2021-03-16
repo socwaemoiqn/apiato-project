@@ -86,7 +86,7 @@
             <div class="title m-b-md">Apiatodsad</div>
 
             <div class="links">
-                <a href="{{ url('/login-page') }}">Login</a>
+                <a href="{{ url('/login') }}">Login</a>
                 <a href="http://apiato.io/">Documentation</a>
                 <a href="https://github.com/apiato/apiato">GitHub</a>
             </div>

@@ -41,17 +41,6 @@ class Controller extends WebController
 
         return view('welcome::login-page');
     }
-
-    public function handleLogin(LoginRequest $request)
-    {
-        try {
-            $result = Apiato::call('Authentication@WebAdminLoginAction', [new DataTransporter($request)]);
-        } catch (Exception $e) {
-            return redirect('login')->with('status', $e->getMessage());
-        }
-
-        return is_array($result) ? redirect('home')->with($result) : redirect('dashboard');
-    }
     public function handleResgiter(ResgiterRequest $request)
     {
         try {
