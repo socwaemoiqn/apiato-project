@@ -47,10 +47,15 @@ class LoginRequest extends Request
      */
     public function rules()
     {
+
         return [
-            'email'    => 'required|email|max:40',
-            'password' => 'required|max:30',
+            'email'    => 'required',
+            'password' => 'required',
         ];
+        // return [
+        //     'email'    => 'required|email|max:40',
+        //     'password' => 'required|max:30',
+        // ];
     }
 
     /**
