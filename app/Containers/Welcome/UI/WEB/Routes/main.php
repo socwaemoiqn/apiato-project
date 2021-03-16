@@ -6,22 +6,21 @@ $router->get('/', [
 ]);
 
 
-$router->get('/login', [
+$router->get('/login-page', [
     'uses' => 'Controller@showLoginPage',
 ]);
+;
 
-$router->post('/handleLogin', [
-    'uses' => 'Controller@handleLogin'
+$router->get('/resgiter', [
+    'uses' => 'Controller@showResgiterPage',
 ]);
+
+$router->post('/resgiter', [
+    'uses' => 'Controller@handleResgiter',
+]);
+
 
 $router->get('/logout', [
     'uses' => 'Controller@handleLogut'
 ]);
 
-
-$router->get('/dashboard', [
-    'uses' => 'Controller@showHomePage',
-    'middleware' => [
-        'auth:web'
-    ]
-]);

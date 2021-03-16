@@ -27,3 +27,7 @@
  */
 
 // Implementation in the Laravel Passport package
+
+$router->post('users/login', [
+  'uses' => 'Controller@userLogin',
+]);

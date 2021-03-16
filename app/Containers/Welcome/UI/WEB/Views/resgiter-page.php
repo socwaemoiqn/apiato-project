@@ -10,17 +10,13 @@
 
 <body>
     <form method="post" action="{{ url('/login') }}">
-    @csrf
+        <h5>Trang đăng ký</h5>
         <p>Username</p>
         <input type="text" name="email" id="" />
         <p>Password</p>
         <input type="password" name="password" id="">
-        <input type="submit" value="Login">
+        <input type="submit" value="Register">
 
-
-        @isset($user)
-        User logged: {{ $user }}
-        @endisset
     </form>
 </body>
 

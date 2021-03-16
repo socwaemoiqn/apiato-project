@@ -5,6 +5,7 @@ namespace App\Containers\Welcome\UI\WEB\Controllers;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Authentication\UI\WEB\Requests\LoginRequest;
 use App\Containers\Authentication\UI\WEB\Requests\LogoutRequest;
+use App\Containers\Authentication\UI\WEB\Requests\ResgiterRequest;
 use App\Ship\Parents\Controllers\WebController;
 use App\Ship\Transporters\DataTransporter;
 use Exception;
@@ -27,6 +28,13 @@ class Controller extends WebController
         return view('welcome::welcome-page');
     }
 
+    public function showResgiterPage()
+    {
+        // No actions to call. Since there's nothing to do but returning a response.
+
+        return view('welcome::resgiter-page');
+    }
+
     public function showLoginPage()
     {
         // No actions to call. Since there's nothing to do but returning a response.
@@ -44,7 +52,16 @@ class Controller extends WebController
 
         return is_array($result) ? redirect('home')->with($result) : redirect('dashboard');
     }
+    public function handleResgiter(ResgiterRequest $request)
+    {
+        try {
+            $result = Apiato::call('Authentication@WebResgiterAction', [new DataTransporter($request)]);
+        } catch (Exception $e) {
+            return redirect('login')->with('status', $e->getMessage());
+        }
 
+        return is_array($result) ? redirect('home')->with($result) : redirect('dashboard');
+    }
     public function handleLogut(LogoutRequest $request)
     {
         Apiato::call('Authentication@WebLogoutAction');
