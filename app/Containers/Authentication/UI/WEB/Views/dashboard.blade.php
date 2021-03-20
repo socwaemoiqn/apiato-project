@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Apiato</title>
 
@@ -44,10 +43,10 @@
         <div class="content">
             <div class="title">Welcome Admin</div>
             <div>
+                <h1><a href="{{ url('/car/index') }}">Car page</a></h1>
                 <h2> <a href="{{ url('/logout' )}}">Logout</a></h2>
             </div>
         </div>
     </div>
 </body>
-
 </html>

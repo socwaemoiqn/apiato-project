@@ -54,7 +54,7 @@ return [
         | Access Token Expiration
         |--------------------------------------------------------------------------
         |
-        | In Minutes. Default to 1,440 minutes = 1 day
+        |In Minutes . Default to 1,440 minutes = 1 day
         |
         */
         'expires-in'             => env('API_TOKEN_EXPIRES', 1440),

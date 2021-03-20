@@ -87,6 +87,7 @@
 
             <div class="links">
                 <a href="{{ url('/login') }}">Login</a>
+                <!-- <a href="{{ url('/car/index') }}">Car page</a> -->
                 <a href="http://apiato.io/">Documentation</a>
                 <a href="https://github.com/apiato/apiato">GitHub</a>
             </div>
