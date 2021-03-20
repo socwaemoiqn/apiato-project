@@ -83,10 +83,11 @@
 
         <div class="content">
 
-            <div class="title m-b-md">Apiatodsad</div>
+            <div class="title m-b-md">APIATO</div>
 
             <div class="links">
                 <a href="{{ url('/login') }}">Login</a>
+                
                 <a href="http://apiato.io/">Documentation</a>
                 <a href="https://github.com/apiato/apiato">GitHub</a>
             </div>

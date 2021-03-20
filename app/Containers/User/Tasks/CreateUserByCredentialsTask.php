@@ -55,7 +55,7 @@ class CreateUserByCredentialsTask extends Task
                 'is_client' => $isClient,
             ]);
 
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             throw (new CreateResourceFailedException())->debug($e);
         }
 

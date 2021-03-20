@@ -52,6 +52,7 @@ class AuthProvider extends ParentAuthProvider
         $this->registerPassport();
         $this->registerPassportApiRoutes();
         $this->registerPassportWebRoutes();
+        
     }
 
     /**

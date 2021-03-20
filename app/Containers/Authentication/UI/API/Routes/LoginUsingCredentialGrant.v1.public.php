@@ -25,3 +25,7 @@
  */
 
 // Implementation in the Laravel Passport package
+$router->post('/admin/login', [
+  'as' => 'admin_web_app_login_proxy',
+  'uses'  => 'Controller@proxyLoginForAdminWebClient',
+]);

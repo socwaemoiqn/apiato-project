@@ -45,6 +45,7 @@
             <div class="title">Welcome Admin</div>
             <div>
                 <h2> <a href="{{ url('/logout' )}}">Logout</a></h2>
+                <a href="{{ url('/girls') }}">Girls</a>
             </div>
         </div>
     </div>
