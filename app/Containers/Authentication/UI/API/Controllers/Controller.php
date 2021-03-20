@@ -63,7 +63,10 @@ class Controller extends ApiController
 
         return $this->json($result['response_content'])->withCookie($result['refresh_cookie']);
     }
-
+    public function getJsonTest()
+    {
+        return $this->json(['values' => 'viet']);
+    }
     /**
      * Read the comment in the function `proxyLoginForAdminWebClient`
      *
