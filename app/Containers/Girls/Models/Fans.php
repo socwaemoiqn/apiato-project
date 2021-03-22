@@ -3,17 +3,14 @@
 namespace App\Containers\Girls\Models;
 
 use App\Ship\Parents\Models\Model;
-use Laravel\Passport\HasApiTokens;
 
-class Girls extends Model 
-{   
-    protected $table= 'girls';
-    
+class Fans extends Model
+{
+    protected $table= 'fans';
     protected $fillable = [
         'ten',
-        'Vong1',
-        'Vong2',
-        'Vong3',
+        'tuoi',
+        
 
     ];
 
@@ -33,10 +30,13 @@ class Girls extends Model
         'created_at',
         'updated_at',
     ];
-    public function girls()
+    public function fans()
 {
-    return $this->hasMany(Fans::class);
+    return $this->belongsTo(Girls::class);
 }
 
- 
+    /**
+     * A resource key to be used by the the JSON API Serializer responses.
+     */
+    protected $resourceKey = 'fans';
 }

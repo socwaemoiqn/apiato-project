@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class UpdateCar4 extends Migration
+class Update3 extends Migration
 {
 
     /**
@@ -11,10 +11,11 @@ class UpdateCar4 extends Migration
      */
     public function up()
     {
-        Schema::table('cars', function (Blueprint $table) {
+        Schema::table('fans', function (Blueprint $table) {
 
-        
-            $table->timestamps();
+            $table->dropColumn('noi o');
+            $table->dropColumn('votes');
+
         });
     }
 
@@ -23,6 +24,6 @@ class UpdateCar4 extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cars');
+        Schema::dropIfExists('fans');
     }
 }
