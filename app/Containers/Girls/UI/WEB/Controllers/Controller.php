@@ -13,7 +13,9 @@ use App\Containers\Girls\UI\WEB\Requests\DetailsGirlsRequest;
 use App\Ship\Parents\Controllers\WebController;
 use Apiato\Core\Foundation\Facades\Apiato;
 use App\Containers\Girls\Models\Girls;
+use App\Ship\Parents\Requests\Request;
 use Illuminate\Support\Facades\DB;
+
 
 /**
  * Class Controller
@@ -30,13 +32,15 @@ class Controller extends WebController
     public function index(GetAllGirlsRequest $request)
     {
         // $girls = Apiato::call('Girls@GetAllGirlsAction', [$request]);
-        $allgirl = DB::table('girls')->select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->get();
+        $allgirl = DB::table('girls')->select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(4);
+        
+        
+        
+
+       
 
 
-        $name = 'Create_girls';
-
-
-        return view('girls::ShowRoom_Girls', compact('allgirl', 'name'));
+        return view('girls::ShowRoom_Girls')->with('allgirl',$allgirl);
         // ..
     }
 
@@ -47,7 +51,27 @@ class Controller extends WebController
      */
     public function show(FindGirlsByIdRequest $request)
     {
-        $girls = Apiato::call('Girls@FindGirlsByIdAction', [$request]);
+        
+        // $girls = Apiato::call('Girls@FindGirlsByIdAction', [$request]);
+        $search=$request->input('key');
+        if($search!=""){
+            $field = ['ten','Vong1','Vong2','Vong3'];
+            $allgirl = Girls::where(function ($query) use ($search,$field){
+                
+                foreach ( $field as $s){
+                    $query->orwhere($s, 'like',  '%' . $search .'%');
+                }
+
+                    
+            })
+            ->paginate(4);
+            $allgirl->appends(['key'=>$search]);
+        }
+        else{
+            $allgirl = Girls::select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(4);
+        }
+        return View('girls::ShowRoom_Girls')->with('allgirl',$allgirl);
+
 
         // ..
     }
@@ -189,10 +213,5 @@ class Controller extends WebController
 
         // ..
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
 }

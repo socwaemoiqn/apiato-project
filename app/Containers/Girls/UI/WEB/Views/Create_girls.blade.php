@@ -8,6 +8,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+        
 
         .login-page {
             width: 360px;
@@ -137,7 +138,11 @@
 <body>
 
     <div class="login-page">
+        @if(isset($girl))
+        <h1 class="center">Updategirls</h1>
+        @else
         <h1 class="center">Creategirls</h1>
+        @endif
         <div class="form">
             <form class="login-form" 
             @if(isset($girl))

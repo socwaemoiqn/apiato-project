@@ -3,8 +3,9 @@
 namespace App\Containers\Girls\Models;
 
 use App\Ship\Parents\Models\Model;
+use Laravel\Passport\HasApiTokens;
 
-class Girls extends Model
+class Girls extends Model 
 {   
     protected $table= 'girls';
     
