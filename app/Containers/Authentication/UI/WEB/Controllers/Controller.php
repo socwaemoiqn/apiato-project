@@ -87,5 +87,4 @@ class Controller extends WebController
 
         return redirect('login');
     }
-
 }
