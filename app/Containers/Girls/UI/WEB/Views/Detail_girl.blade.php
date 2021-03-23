@@ -52,6 +52,12 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <a href="{{ url('/fans/createfans/'.$detailgirls->id.'') }}">
+                                            <button class="btn btn-lg btn-success" type="button">Create Fans</button>
+                                          </a>
+                                          <a href="{{ url('fans/list/'.$detailgirls->id.'') }}">
+                                            <button class="btn btn-lg btn-success" type="button">My Fans</button>
+                                          </a>
                 </div>
             </div>
         </div>

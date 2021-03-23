@@ -5,13 +5,20 @@ namespace App\Containers\Girls\UI\WEB\Controllers;
 use App\Containers\Girls\UI\WEB\Requests\CreateGirlsRequest;
 use App\Containers\Girls\UI\WEB\Requests\DeleteGirlsRequest;
 use App\Containers\Girls\UI\WEB\Requests\GetAllGirlsRequest;
+use App\Containers\Girls\UI\WEB\Requests\GetAllFansRequest;
 use App\Containers\Girls\UI\WEB\Requests\FindGirlsByIdRequest;
 use App\Containers\Girls\UI\WEB\Requests\UpdateGirlsRequest;
 use App\Containers\Girls\UI\WEB\Requests\StoreGirlsRequest;
+use App\Containers\Girls\UI\WEB\Requests\StoreFansRequest;
 use App\Containers\Girls\UI\WEB\Requests\EditGirlsRequest;
 use App\Containers\Girls\UI\WEB\Requests\DetailsGirlsRequest;
+use App\Containers\Girls\UI\WEB\Requests\CreateFansRequest;
+use App\Containers\Girls\UI\WEB\Requests\ListFans;
+use App\Containers\Girls\UI\WEB\Requests\GetAllListFansRequest;
 use App\Ship\Parents\Controllers\WebController;
+
 use Apiato\Core\Foundation\Facades\Apiato;
+use App\Containers\Girls\Models\Fans;
 use App\Containers\Girls\Models\Girls;
 use App\Ship\Parents\Requests\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,17 +39,23 @@ class Controller extends WebController
     public function index(GetAllGirlsRequest $request)
     {
         // $girls = Apiato::call('Girls@GetAllGirlsAction', [$request]);
-        $allgirl = DB::table('girls')->select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(4);
-        
-        
-        
-
-       
-
-
+        $allgirl = DB::table('girls')->select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(3);
         return view('girls::ShowRoom_Girls')->with('allgirl',$allgirl);
         // ..
     }
+     /**
+     * Show all entities
+     *
+     * @param GetAllFansRequest $request
+     */
+    public function fansindex(GetAllFansRequest $request)
+    {
+        // $girls = Apiato::call('Girls@GetAllGirlsAction', [$request]);
+        $allfans = DB::table('fans')->select('id', 'ten', 'tuoi','girls_id')->paginate(3);
+        return view('girls::Fans')->with('allfans',$allfans);
+        // ..
+    }
+    
 
     /**
      * Show one entity
@@ -68,7 +81,7 @@ class Controller extends WebController
             $allgirl->appends(['key'=>$search]);
         }
         else{
-            $allgirl = Girls::select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(4);
+            $allgirl = Girls::select('id', 'ten', 'Vong1', 'Vong2', 'Vong3')->paginate(3);
         }
         return View('girls::ShowRoom_Girls')->with('allgirl',$allgirl);
 
@@ -85,6 +98,16 @@ class Controller extends WebController
     {
         // .
         return view('girls::Create_girls');
+    }
+     /**
+     * Create entity (show UI)
+     *
+     * @param ListFans $request
+     */
+    public function listfans(ListFans $request)
+    {   $girl_id=$request->id;
+        $fans=Fans::where('girls_id',$girl_id);           
+        return view('girls::list_fans')->with('fans',$fans);
     }
 
     /**
@@ -213,5 +236,55 @@ class Controller extends WebController
 
         // ..
     }
-    
+    /**
+     * Create entity (show UI)
+     *
+     * @param CreateFansRequest $request
+     */
+    public function createfans(CreateFansRequest $request)
+    {
+        // 
+        $girl_id=$request->id;
+        return view('girls::Create_fans')->with('girl_id',$girl_id);
+    }
+    /**
+     * Add a new entity
+     *
+     * @param StoreFansRequest $request
+     */
+    public function storefans (StoreFansRequest $request)
+    {
+        //
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        // $allRequest  = $request->all();
+        $ten  = $request->ten;
+        $tuoi = $request->tuoi;
+        $girlsid = $request->girl_id;
+        
+        // try {
+        //     $girls = Apiato::call('Girls@CreateGirlsAction', [$request]);
+        // } catch (Exception $e) {
+        //     return redirect('girls/store')->with('status', $e->getMessage());
+        // }
+        //Gán giá trị vào array
+        $dataInsertToDatabase = array(
+            'ten'  => $ten,
+            'tuoi' => $tuoi,
+            'girls_id' => $girlsid,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+        $insertData = DB::table('fans')->insert($dataInsertToDatabase);
+        
+        //kiểm tra và trả về thông báo
+        if ($insertData) {
+            return redirect('fans/fansindex')->with('status', 'Create Successfull!');
+        } else {
+            return redirect('/fans/createfans')->with('status', 'Create Faill!');
+
+
+            //return redirect('login')->with('status','Create Successfull!');
+            // ..
+        }
+    }
 }

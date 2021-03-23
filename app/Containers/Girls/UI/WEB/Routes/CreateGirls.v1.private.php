@@ -1,7 +1,7 @@
 <?php
 
 /** @var Route $router */
-$router->get('girls/create', [
+$router->get('/girls/create', [
     'as' => 'web_girls_create',
     'uses'  => 'Controller@create',
     'middleware' => [

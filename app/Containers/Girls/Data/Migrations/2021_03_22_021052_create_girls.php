@@ -17,8 +17,8 @@ class CreateGirls extends Migration
             $table->decimal('Vong1')->nullable();
             $table->decimal('Vong2')->nullable();
             $table->decimal('Vong3')->nullable();
-            
-
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 
