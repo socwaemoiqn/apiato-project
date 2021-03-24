@@ -2,10 +2,12 @@
 
 namespace App\Containers\SocialAuth\UI\WEB\Controllers;
 
+use Apiato\Core\Foundation\Facades\Apiato;
 use App\Ship\Parents\Controllers\WebController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Containers\User\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 /**
  * Class Controller
  *
@@ -31,28 +33,26 @@ class Controller extends WebController
      */
     public function handleCallbackAll($provider)
     {
-        
-        try {
-            $user = Socialite::driver($provider)->user();
-        } catch (\Exception $e) {
-            return redirect('login');
-        }
-        $existingUser = User::where('email', $user->email)->first();
-        if($existingUser){
-            // log them in
-            Auth::login($existingUser, true);
-        } else {
+        $users = Socialite::driver($provider)->user();
+
+        $existingUser = User::where('email', $users->email)->first();
+        if (!$existingUser) {
             // create a new user
             $newUser                  = new User;
-            $newUser->name            = $user->name;
-            $newUser->email           = $user->email;
-            $newUser->google_id       = $user->social_id;
-            $newUser->social_avatar          = $user->social_avatar;
-            $newUser->avatar_original = $user->avatar_original;
+            $newUser->name            = $users->name;
+            $newUser->email           = $users->email;
+            $newUser->social_id       = $users->id;
+            $newUser->is_client       = false;
+            $newUser->social_avatar   = $users->avatar;
+            $newUser->social_avatar_original = $users->avatar_original;
             $newUser->save();
-            Auth::login($newUser, true);
+            $newUser = Apiato::call('Authorization@AssignUserToRoleTask', [$newUser, ['admin']]);
+            Auth::login($newUser);
+        } else
+        {
+            Auth::login($existingUser);
         }
+         
         return redirect('dashboard');
     }
-
 }

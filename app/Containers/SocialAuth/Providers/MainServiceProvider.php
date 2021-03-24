@@ -43,4 +43,5 @@ class MainServiceProvider extends MainProvider
 
         // do your binding here..
     }
+    
 }
