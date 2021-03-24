@@ -42,6 +42,7 @@
     <div class="container">
         <div class="content">
             <div class="title">Welcome Admin</div>
+            <h1>{{$email}}</h1>
             <div>
                 <h1><a href="{{ url('/car/index') }}">Car page</a></h1>
                 <h2> <a href="{{ url('/logout' )}}">Logout</a></h2>

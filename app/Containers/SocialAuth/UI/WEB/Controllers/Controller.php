@@ -46,13 +46,15 @@ class Controller extends WebController
             $newUser->social_avatar   = $users->avatar;
             $newUser->social_avatar_original = $users->avatar_original;
             $newUser->save();
-            $newUser = Apiato::call('Authorization@AssignUserToRoleTask', [$newUser, ['admin']]);
             Auth::login($newUser);
+        $email=Auth::user()->email;
         } else
         {
+            // $prof=User::select('email')->where('email',$existingUser->email);
             Auth::login($existingUser);
+            $email=Auth::user()->email;
         }
          
-        return redirect('dashboard');
+        return redirect('dashboard')->with('email',$email);
     }
 }

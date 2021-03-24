@@ -155,7 +155,10 @@
                 </a>
                 <br></br>
                 <a href="{{ url('auth/google') }}">
-                    <button class="btn btn-lg btn-facebook btn-block" type="button">Login google</button>
+                    <button class="btn btn-lg btn-google btn-block" type="button">Login google</button>
+                </a>
+                <a href="{{ url('auth/facebook') }}">
+                    <button class="btn btn-lg btn-facebook btn-block" type="button">Login FB</button>
                 </a>
                 
             </form>

@@ -7,9 +7,11 @@ use App\Containers\Authentication\UI\WEB\Requests\LoginRequest;
 use App\Containers\Authentication\UI\WEB\Requests\LogoutRequest;
 use App\Containers\Authentication\UI\WEB\Requests\ResgiterRequest;
 use App\Containers\Authentication\UI\WEB\Requests\ViewDashboardRequest;
+use App\Containers\User\Models\User;
 use App\Ship\Parents\Controllers\WebController;
 use App\Ship\Transporters\DataTransporter;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Controller
@@ -60,7 +62,8 @@ class Controller extends WebController
      */
     public function viewDashboardPage(ViewDashboardRequest $request)
     {
-        return view('authentication::dashboard');
+        $email=Auth::user()->name;
+        return view('authentication::dashboard')->with('email',$email);
     }
 
     public function showResgiterPage()
