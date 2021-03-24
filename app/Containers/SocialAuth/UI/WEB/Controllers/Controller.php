@@ -35,8 +35,7 @@ class Controller extends WebController
         try {
             $user = Socialite::driver($provider)->user();
         } catch (\Exception $e) {
-            return redirect('/login');
-            
+            return redirect('login');
         }
         $existingUser = User::where('email', $user->email)->first();
         if($existingUser){
@@ -53,7 +52,7 @@ class Controller extends WebController
             $newUser->save();
             Auth::login($newUser, true);
         }
-        return redirect()->to('/dashboard');
+        return redirect('dashboard');
     }
 
 }
