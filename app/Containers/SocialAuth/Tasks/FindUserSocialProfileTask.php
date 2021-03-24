@@ -27,6 +27,9 @@ class FindUserSocialProfileTask extends Task
             case 'facebook':
                 $user = Socialite::driver($provider)->userFromToken($requestData['oauth_token']);
                 break;
+                case 'google':
+                    $user = Socialite::driver($provider)->userFromToken($requestData['oauth_token']);
+                    break;
             case 'twitter':
                 $user = Socialite::driver($provider)->userFromTokenAndSecret($requestData['oauth_token'],
                     $requestData['oauth_secret']);

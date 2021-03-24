@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <title>Apiato</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -150,6 +153,11 @@
                 <a href="{{ url('resgiter') }}">
                     <button type="button">Resgiter</button>
                 </a>
+                <br></br>
+                <a href="{{ url('auth/google') }}">
+                    <button class="btn btn-lg btn-facebook btn-block" type="button">Login google</button>
+                </a>
+                
             </form>
         </div>
     </div>

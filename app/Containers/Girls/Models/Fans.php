@@ -30,7 +30,7 @@ class Fans extends Model
         'created_at',
         'updated_at',
     ];
-    public function fans()
+    public function girls()
 {
     return $this->belongsTo(Girls::class);
 }

@@ -58,6 +58,10 @@
                                           <a href="{{ url('fans/list/'.$detailgirls->id.'') }}">
                                             <button class="btn btn-lg btn-success" type="button">My Fans</button>
                                           </a>
+                                          <br></br>
+                                          <a href="{{ url('/girls') }}">
+                                            <button type="button" class="btn btn-lg btn-success" >Back</button>
+                                        </a>
                 </div>
             </div>
         </div>

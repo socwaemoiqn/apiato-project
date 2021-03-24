@@ -33,7 +33,7 @@ class Girls extends Model
         'created_at',
         'updated_at',
     ];
-    public function girls()
+    public function fans()
 {
     return $this->hasMany(Fans::class);
 }

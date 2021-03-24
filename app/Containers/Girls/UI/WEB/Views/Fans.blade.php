@@ -108,6 +108,7 @@
                   <a href="{{ url('/logout' )}}">
                     <button class="btn btn-lg btn-success" type="button">Logout</button>
                 </a>
+                
               </tr>
             </div>
         </div>
